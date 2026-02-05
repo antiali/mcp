@@ -226,6 +226,24 @@ final class AI_Website_Builder_Unified {
         $this->remote_design_manager = new AWBU_Remote_Design_Manager();
         
         // Initialize Integration Layer
+
+// Initialize YMCP Personal Assistant Components
+if (class_exists('YMCP_Dashboard')) {
+    $this->dashboard = new YMCP_Dashboard();
+}
+
+if (class_exists('YMCP_Analytics_Hub')) {
+    $this->analytics_hub = new YMCP_Analytics_Hub();
+}
+
+if (class_exists('YMCP_Security_Guard')) {
+    $this->security_guard = new YMCP_Security_Guard();
+}
+
+if (class_exists('YMCP_Backup_Manager')) {
+    $this->backup_manager = new YMCP_Backup_Manager();
+}
+
         new AWBU_Integration_Layer(
             $this->design_system,
             $this->ai_orchestrator,
