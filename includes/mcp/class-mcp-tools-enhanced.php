@@ -186,7 +186,178 @@ class AWBU_MCP_Tools_Enhanced {
             'parameters' => array()
         );
         
-        // ============ CODE ANALYSIS & DEBUGGING TOOLS (Based on WordPress MCP) ============
+        // ============ CODE ANALYSIS & DEBUGGING TOOLS
+
+// ==================== YMCP PERSONAL ASSISTANT TOOLS ====================
+
+// Dashboard Tools
+$tools[] = array(
+    'name' => 'ymcp_get_dashboard',
+    'description' => 'Get YMCP dashboard summary with site health, stats, and alerts',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'ymcp_get_site_info',
+    'description' => 'Get comprehensive site information',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'ymcp_get_tasks',
+    'description' => 'Get pending tasks and reminders',
+    'parameters' => array()
+);
+
+// Analytics Tools
+$tools[] = array(
+    'name' => 'ymcp_get_analytics',
+    'description' => 'Get analytics data (visitors, page views, etc.)',
+    'parameters' => array(
+        'start_date' => array('type' => 'string', 'required' => false),
+        'end_date' => array('type' => 'string', 'required' => false),
+        'limit' => array('type' => 'integer', 'required' => false, 'default' => 1000),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_generate_report',
+    'description' => 'Generate analytics report (json, html, csv)',
+    'parameters' => array(
+        'format' => array('type' => 'string', 'required' => false, 'default' => 'json', 'enum' => array('json', 'html', 'csv')),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_clear_analytics',
+    'description' => 'Clear analytics data before specific date',
+    'parameters' => array(
+        'before_date' => array('type' => 'string', 'required' => false),
+    )
+);
+
+// Security Tools
+$tools[] = array(
+    'name' => 'ymcp_security_scan',
+    'description' => 'Run comprehensive security scan',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'ymcp_get_security_report',
+    'description' => 'Get last security scan report',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'ymcp_create_backup',
+    'description' => 'Create full site backup',
+    'parameters' => array(
+        'backup_name' => array('type' => 'string', 'required' => false),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_restore_backup',
+    'description' => 'Restore site from backup',
+    'parameters' => array(
+        'backup_id' => array('type' => 'string', 'required' => true),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_list_backups',
+    'description' => 'List all available backups',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'ymcp_delete_backup',
+    'description' => 'Delete a backup',
+    'parameters' => array(
+        'backup_id' => array('type' => 'string', 'required' => true),
+    )
+);
+
+// Communication Tools
+$tools[] = array(
+    'name' => 'ymcp_send_email',
+    'description' => 'Send email notification',
+    'parameters' => array(
+        'to' => array('type' => 'string', 'required' => true),
+        'subject' => array('type' => 'string', 'required' => true),
+        'message' => array('type' => 'string', 'required' => true),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_chatbot_query',
+    'description' => 'Query AI chatbot',
+    'parameters' => array(
+        'question' => array('type' => 'string', 'required' => true),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_train_chatbot',
+    'description' => 'Train chatbot on site data',
+    'parameters' => array()
+);
+
+// E-commerce Tools
+$tools[] = array(
+    'name' => 'ymcp_create_product',
+    'description' => 'Create WooCommerce product with AI',
+    'parameters' => array(
+        'name' => array('type' => 'string', 'required' => true),
+        'description' => array('type' => 'string', 'required' => true),
+        'price' => array('type' => 'number', 'required' => false),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_update_inventory',
+    'description' => 'Update product inventory',
+    'parameters' => array(
+        'product_id' => array('type' => 'integer', 'required' => true),
+        'stock_quantity' => array('type' => 'integer', 'required' => true),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_get_sales_report',
+    'description' => 'Get sales and revenue report',
+    'parameters' => array(
+        'start_date' => array('type' => 'string', 'required' => false),
+        'end_date' => array('type' => 'string', 'required' => false),
+    )
+);
+
+// Automation Tools
+$tools[] = array(
+    'name' => 'ymcp_create_workflow',
+    'description' => 'Create automation workflow',
+    'parameters' => array(
+        'name' => array('type' => 'string', 'required' => true),
+        'trigger' => array('type' => 'string', 'required' => true),
+        'actions' => array('type' => 'array', 'required' => true),
+    )
+);
+
+$tools[] = array(
+    'name' => 'ymcp_list_workflows',
+    'description' => 'List all automation workflows',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'ymcp_trigger_workflow',
+    'description' => 'Trigger a workflow manually',
+    'parameters' => array(
+        'workflow_id' => array('type' => 'string', 'required' => true),
+    )
+);
+ (Based on WordPress MCP) ============
         
         // 7. Detect code errors and issues
         $tools[] = array(
@@ -990,6 +1161,71 @@ class AWBU_MCP_Tools_Enhanced {
     }
     
     // ============ NEW TOOL IMPLEMENTATIONS: CODE ANALYSIS & DEBUGGING ============
+
+// ==================== YMCP PERSONAL ASSISTANT TOOLS ====================
+case 'ymcp_get_dashboard':
+    return $this->ymcp_get_dashboard($params);
+
+case 'ymcp_get_site_info':
+    return $this->ymcp_get_site_info($params);
+
+case 'ymcp_get_tasks':
+    return $this->ymcp_get_tasks($params);
+
+case 'ymcp_get_analytics':
+    return $this->ymcp_get_analytics($params);
+
+case 'ymcp_generate_report':
+    return $this->ymcp_generate_report($params);
+
+case 'ymcp_clear_analytics':
+    return $this->ymcp_clear_analytics($params);
+
+case 'ymcp_security_scan':
+    return $this->ymcp_security_scan($params);
+
+case 'ymcp_get_security_report':
+    return $this->ymcp_get_security_report($params);
+
+case 'ymcp_create_backup':
+    return $this->ymcp_create_backup($params);
+
+case 'ymcp_restore_backup':
+    return $this->ymcp_restore_backup($params);
+
+case 'ymcp_list_backups':
+    return $this->ymcp_list_backups($params);
+
+case 'ymcp_delete_backup':
+    return $this->ymcp_delete_backup($params);
+
+case 'ymcp_send_email':
+    return $this->ymcp_send_email($params);
+
+case 'ymcp_chatbot_query':
+    return $this->ymcp_chatbot_query($params);
+
+case 'ymcp_train_chatbot':
+    return $this->ymcp_train_chatbot($params);
+
+case 'ymcp_create_product':
+    return $this->ymcp_create_product($params);
+
+case 'ymcp_update_inventory':
+    return $this->ymcp_update_inventory($params);
+
+case 'ymcp_get_sales_report':
+    return $this->ymcp_get_sales_report($params);
+
+case 'ymcp_create_workflow':
+    return $this->ymcp_create_workflow($params);
+
+case 'ymcp_list_workflows':
+    return $this->ymcp_list_workflows($params);
+
+case 'ymcp_trigger_workflow':
+    return $this->ymcp_trigger_workflow($params);
+
     
     /**
      * Detect code errors
