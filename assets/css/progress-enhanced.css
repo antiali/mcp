@@ -1,0 +1,258 @@
+/**
+ * AI Site Builder Pro - Enhanced Progress Styles
+ *
+ * @package AISiteBuilderPro
+ * @since 1.2.0
+ */
+
+/* Phase Cards */
+.aisbp-progress-phase {
+    background: var(--aisbp-bg-input, rgba(241, 245, 249, 0.7));
+    border: 1px solid var(--aisbp-border, rgba(226, 232, 240, 0.8));
+    border-radius: 16px;
+    margin-bottom: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.aisbp-progress-phase:hover {
+    background: var(--aisbp-bg-card, rgba(255, 255, 255, 0.9));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.aisbp-progress-phase.active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.08));
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+}
+
+.aisbp-progress-phase.completed {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.05));
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+.aisbp-progress-phase.error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.05));
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.aisbp-progress-phase.skipped {
+    opacity: 0.5;
+    background: var(--aisbp-bg-input, rgba(241, 245, 249, 0.5));
+}
+
+/* Phase Header */
+.aisbp-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0;
+}
+
+.aisbp-progress-phase.active .aisbp-phase-header {
+    margin-bottom: 12px;
+}
+
+.aisbp-phase-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--aisbp-bg-card, rgba(255, 255, 255, 0.8));
+    border-radius: 12px;
+    color: var(--aisbp-text-muted, #64748b);
+    transition: all 0.3s ease;
+    border: 1px solid var(--aisbp-border, rgba(226, 232, 240, 0.5));
+}
+
+.aisbp-progress-phase.active .aisbp-phase-icon {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+.aisbp-progress-phase.completed .aisbp-phase-icon {
+    background: linear-gradient(135deg, #22c55e, #10b981);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.aisbp-progress-phase.error .aisbp-phase-icon {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.aisbp-phase-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.aisbp-phase-name {
+    font-weight: 600;
+    color: var(--aisbp-text-primary, #1e293b);
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.aisbp-phase-status {
+    font-size: 12px;
+    color: var(--aisbp-text-muted, #64748b);
+}
+
+.aisbp-progress-phase.active .aisbp-phase-status {
+    color: #6366f1;
+    font-weight: 500;
+}
+
+.aisbp-progress-phase.completed .aisbp-phase-status {
+    color: #22c55e;
+}
+
+.aisbp-progress-phase.error .aisbp-phase-status {
+    color: #ef4444;
+}
+
+/* Phase Details (Animated) */
+.aisbp-phase-details {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.aisbp-progress-phase.active .aisbp-phase-details {
+    max-height: 100px;
+    opacity: 1;
+}
+
+/* Progress Bar */
+.aisbp-phase-progress-bar {
+    height: 6px;
+    background: var(--aisbp-border, rgba(226, 232, 240, 0.8));
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.aisbp-phase-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.3s ease-out;
+    position: relative;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+}
+
+/* Shimmer Effect on Progress Bar */
+.aisbp-phase-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+    );
+    transform: translateX(-100%);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Micro Log */
+.aisbp-phase-micro-log {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--aisbp-text-muted, #64748b);
+    background: var(--aisbp-bg-input, rgba(241, 245, 249, 0.6));
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--aisbp-border, rgba(226, 232, 240, 0.5));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Timer */
+.aisbp-phase-time {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-weight: 600;
+    color: var(--aisbp-text-muted, #64748b);
+    background: var(--aisbp-bg-card, rgba(255, 255, 255, 0.7));
+    padding: 6px 10px;
+    border-radius: 8px;
+    min-width: 55px;
+    text-align: center;
+    border: 1px solid var(--aisbp-border, rgba(226, 232, 240, 0.5));
+}
+
+.aisbp-progress-phase.active .aisbp-phase-time {
+    color: #6366f1;
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.aisbp-progress-phase.completed .aisbp-phase-time {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Check Icon */
+.aisbp-phase-check {
+    opacity: 0;
+    transform: scale(0) rotate(-45deg);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #22c55e;
+}
+
+.aisbp-progress-phase.completed .aisbp-phase-check {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+/* Dark Mode Support */
+.aisbp-dark .aisbp-progress-phase {
+    background: rgba(30, 41, 59, 0.5);
+    border-color: rgba(51, 65, 85, 0.6);
+}
+
+.aisbp-dark .aisbp-phase-name {
+    color: #e2e8f0;
+}
+
+.aisbp-dark .aisbp-phase-icon {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(51, 65, 85, 0.5);
+}
+
+.aisbp-dark .aisbp-phase-time {
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(51, 65, 85, 0.5);
+}
+
+.aisbp-dark .aisbp-phase-micro-log {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(51, 65, 85, 0.4);
+}
+
+.aisbp-dark .aisbp-phase-progress-bar {
+    background: rgba(51, 65, 85, 0.6);
+}

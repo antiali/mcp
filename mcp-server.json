@@ -1,0 +1,257 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/servers/main/schema/mcp-server.schema.json",
+  "name": "ai-website-builder-unified",
+  "display_name": "AI Website Builder - Remote Design",
+  "description": "MCP server for remote website design with AI. Supports Divi 5, Elementor, Gutenberg, and Astra.",
+  "version": "1.0.0",
+  "author": "AWBU Team",
+  
+  "server": {
+    "type": "http",
+    "base_url": "${WORDPRESS_URL}/wp-json/awbu/v1",
+    "headers": {
+      "X-MCP-API-Key": "${AWBU_API_KEY}",
+      "X-WP-Nonce": "${WP_NONCE}",
+      "Content-Type": "application/json"
+    }
+  },
+  
+  "tools": [
+    {
+      "name": "awbu_get_design_system",
+      "description": "Get the current design system including all global colors and variables from the active page builder (Divi 5, Elementor, Gutenberg, or Astra)",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {}
+    },
+    {
+      "name": "awbu_update_design_system",
+      "description": "Update the design system with new colors and variables",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "colors": {
+          "type": "object",
+          "description": "Object of color definitions: { 'color-id': { 'color': '#hex', 'name': 'Color Name' } }",
+          "required": false
+        },
+        "variables": {
+          "type": "object",
+          "description": "Object of variable definitions: { 'var-id': { 'value': '20px', 'name': 'Var Name' } }",
+          "required": false
+        }
+      }
+    },
+    {
+      "name": "awbu_remote_design",
+      "description": "Design website remotely using reference materials (URLs, images, files, text). The AI will analyze references and create a design based on them.",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "description": {
+          "type": "string",
+          "description": "Detailed description of what to design",
+          "required": true
+        },
+        "references": {
+          "type": "array",
+          "description": "Array of reference materials. Each item should have 'type' (url/image/file/text) and appropriate fields",
+          "required": false
+        },
+        "model": {
+          "type": "string",
+          "description": "AI model to use: deepseek, gpt-4o, claude, gemini",
+          "required": false,
+          "default": "deepseek"
+        }
+      }
+    },
+    {
+      "name": "awbu_analyze_reference_url",
+      "description": "Analyze a reference URL to extract design information (colors, content, style)",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "url": {
+          "type": "string",
+          "description": "URL to analyze",
+          "required": true
+        },
+        "extract_colors": {
+          "type": "boolean",
+          "description": "Whether to extract colors from the page",
+          "default": true
+        },
+        "extract_content": {
+          "type": "boolean",
+          "description": "Whether to extract text content",
+          "default": true
+        }
+      }
+    },
+    {
+      "name": "awbu_extract_colors_from_image",
+      "description": "Extract color palette from a reference image",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "image_url": {
+          "type": "string",
+          "description": "URL of the image to analyze",
+          "required": true
+        },
+        "num_colors": {
+          "type": "integer",
+          "description": "Number of colors to extract",
+          "default": 5
+        }
+      }
+    },
+    {
+      "name": "awbu_design_full_website",
+      "description": "Design a complete website with multiple pages using references",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "site_name": {
+          "type": "string",
+          "description": "Name of the website",
+          "required": true
+        },
+        "site_description": {
+          "type": "string",
+          "description": "Detailed description of what the website should be",
+          "required": true
+        },
+        "references": {
+          "type": "array",
+          "description": "Reference materials for design inspiration"
+        },
+        "pages": {
+          "type": "array",
+          "description": "List of pages to create: home, about, services, contact, etc.",
+          "default": ["home"]
+        },
+        "model": {
+          "type": "string",
+          "description": "AI model: deepseek, gpt-4o, claude, gemini",
+          "default": "deepseek"
+        }
+      }
+    },
+    {
+      "name": "awbu_apply_design_from_reference",
+      "description": "Apply design system (colors, variables) extracted from a reference URL to the current site",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "reference_url": {
+          "type": "string",
+          "description": "URL to extract design from",
+          "required": true
+        },
+        "apply_colors": {
+          "type": "boolean",
+          "default": true
+        },
+        "apply_fonts": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    {
+      "name": "awbu_create_page_with_design",
+      "description": "Create a new page with the design system applied",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "title": {
+          "type": "string",
+          "description": "Page title",
+          "required": true
+        },
+        "content": {
+          "type": "string",
+          "description": "Page content (HTML or builder JSON)",
+          "required": true
+        },
+        "apply_design_system": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    {
+      "name": "awbu_get_available_models",
+      "description": "Get list of available AI models and their status",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {}
+    },
+    {
+      "name": "awbu_sync_design_system",
+      "description": "Sync all design system variables and colors to ensure consistency",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {}
+    },
+    {
+      "name": "awbu_process_references",
+      "description": "Process reference materials (download images, extract content from URLs) without generating design",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "references": {
+          "type": "array",
+          "description": "Array of reference materials to process",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "awbu_generate_with_references",
+      "description": "Generate website content using AI with reference materials",
+      "endpoint": "/tools/call",
+      "method": "POST",
+      "parameters": {
+        "description": {
+          "type": "string",
+          "required": true
+        },
+        "references": {
+          "type": "array"
+        },
+        "model": {
+          "type": "string",
+          "default": "deepseek"
+        },
+        "mode": {
+          "type": "string",
+          "description": "Generation mode"
+        }
+      }
+    }
+  ],
+  
+  "resources": [
+    {
+      "name": "design_system",
+      "description": "Current design system (colors and variables)",
+      "uri": "awbu://design-system"
+    },
+    {
+      "name": "available_builders",
+      "description": "List of detected page builders",
+      "uri": "awbu://builders"
+    }
+  ],
+  
+  "prompts": [
+    {
+      "name": "design_website",
+      "description": "Design a website with references",
+      "template": "Design a {{type}} website for {{name}}. Use these references: {{references}}. Style: {{style}}."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "AWBU-MCP": {
+            "serverUrl": "https://projects.muhamedahmed.com/peralite2/wp-json/awbu/v1/mcp",
+            "apiKey": "aCtqpmSwYWjgaFXwxwRgrc38rxc838Goeb9bnDnWh8EHrRs6xDz19FwiKdBckn4Y"
+        }
+    }
+}

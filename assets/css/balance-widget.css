@@ -1,0 +1,423 @@
+/**
+ * AI Site Builder Pro - Balance Widget Styles
+ *
+ * @package AISiteBuilderPro
+ * @since 1.2.0
+ */
+
+/* ===== Balance Widget Container ===== */
+.aisbp-balance-widget {
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Compact Widget (Header) */
+.aisbp-balance-widget.compact .aisbp-balance-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #e2e8f0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.aisbp-balance-widget.compact .aisbp-balance-toggle:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.aisbp-balance-widget.compact .balance-icon {
+    font-size: 16px;
+}
+
+.aisbp-balance-widget.compact .balance-summary {
+    font-weight: 600;
+    color: var(--aisbp-neon-green, #00ff87);
+}
+
+.aisbp-balance-widget.compact .balance-arrow {
+    font-size: 10px;
+    color: #64748b;
+    transition: transform 0.2s ease;
+}
+
+.aisbp-balance-widget.compact.open .balance-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown */
+.aisbp-balance-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 320px;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+[dir="rtl"] .aisbp-balance-dropdown {
+    left: auto;
+    right: 0;
+}
+
+.aisbp-balance-widget.compact.open .aisbp-balance-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.balance-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(99, 102, 241, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.balance-dropdown-header h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.balance-refresh {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.balance-refresh:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+
+.balance-refresh .dashicons {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+}
+
+.balance-dropdown-footer {
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Full Widget (Sidebar) */
+.aisbp-balance-widget.full {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.aisbp-balance-widget.full .balance-widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(99, 102, 241, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.aisbp-balance-widget.full .balance-widget-header h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.aisbp-balance-widget.full .balance-widget-footer {
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* ===== Balance List ===== */
+.balance-list {
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.balance-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px 20px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.balance-loading .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    border-top-color: var(--aisbp-neon-blue, #00d4ff);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.balance-empty {
+    text-align: center;
+    padding: 30px 20px;
+    color: #64748b;
+}
+
+.balance-empty .empty-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.balance-empty p {
+    margin: 0 0 16px;
+    font-size: 13px;
+}
+
+.balance-setup-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.balance-setup-link:hover {
+    background: rgba(99, 102, 241, 0.3);
+    color: #c7d2fe;
+}
+
+/* ===== Balance Item ===== */
+.balance-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+}
+
+.balance-item:last-child {
+    margin-bottom: 0;
+}
+
+.balance-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.balance-item.refreshing {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.balance-item.refreshing .balance-item-refresh .dashicons {
+    animation: spin 0.8s linear infinite;
+}
+
+.balance-item.updated {
+    animation: itemUpdated 0.5s ease;
+}
+
+@keyframes itemUpdated {
+    0%, 100% { background: rgba(255, 255, 255, 0.02); }
+    50% { background: rgba(34, 197, 94, 0.1); }
+}
+
+.balance-item-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.balance-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.balance-model-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 2px;
+}
+
+.balance-amount {
+    display: block;
+    font-size: 13px;
+}
+
+.text-balance {
+    color: var(--aisbp-neon-green, #00ff87);
+    font-weight: 600;
+}
+
+.text-free {
+    color: #fcd34d;
+}
+
+.text-active {
+    color: #86efac;
+}
+
+.text-error {
+    color: #fca5a5;
+}
+
+.balance-note {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.balance-error {
+    display: block;
+    font-size: 11px;
+    color: #fca5a5;
+    margin-top: 4px;
+}
+
+.balance-item-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.balance-dashboard-link,
+.balance-item-refresh {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.balance-dashboard-link:hover,
+.balance-item-refresh:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+
+.balance-dashboard-link .dashicons,
+.balance-item-refresh .dashicons {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+}
+
+/* Status Colors */
+.balance-item.status-active .balance-item-icon {
+    background: rgba(34, 197, 94, 0.15);
+}
+
+.balance-item.status-free .balance-item-icon {
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.balance-item.status-warning .balance-item-icon {
+    background: rgba(251, 146, 60, 0.15);
+}
+
+.balance-item.status-error .balance-item-icon {
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.balance-item.status-error {
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+/* Error State */
+.balance-error-state {
+    text-align: center;
+    padding: 30px 20px;
+    color: #fca5a5;
+}
+
+.balance-error-state .error-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.balance-error-state p {
+    margin: 0 0 16px;
+    font-size: 13px;
+}
+
+/* Scrollbar */
+.balance-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.balance-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.balance-list::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 2px;
+}
+
+.balance-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .aisbp-balance-dropdown {
+        width: 280px;
+    }
+}
