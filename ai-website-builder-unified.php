@@ -174,6 +174,21 @@ final class AI_Website_Builder_Unified {
         }
         
         // AI Connectors
+
+        // GLM Connector (zero.ai)
+        if (file_exists(AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-glm-connector.php')) {
+            require_once AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-glm-connector.php';
+            $this->glm_connector = new AWBU_GLM_Connector();
+        }
+
+
+// ==================== NEW: GLM (zero.ai) SUPPORT ====================
+
+// GLM Connector
+if (file_exists(AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-glm-connector.php')) {
+    require_once AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-glm-connector.php';
+}
+
         require_once AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-openai-connector.php';
         require_once AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-claude-connector.php';
         require_once AWBU_PLUGIN_DIR . 'includes/ai/connectors/class-gemini-connector.php';
