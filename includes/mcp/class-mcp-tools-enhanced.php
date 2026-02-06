@@ -334,6 +334,43 @@ $tools[] = array(
 );
 
 // Automation Tools
+
+// ==================== NEW: GLM TOOLS ====================
+
+// GLM AI Model Tools
+$tools[] = array(
+    'name' => 'awbu_chat_with_glm',
+    'description' => 'Chat with GLM AI from zero.ai (cost-effective Chinese model)',
+    'parameters' => array(
+        'prompt' => array('type' => 'string', 'required' => true, 'description' => 'The prompt or message to send to GLM'),
+        'model' => array('type' => 'string', 'required' => false, 'default' => 'glm-4-flash', 'enum' => array('glm-4', 'glm-4-flash', 'glm-4-air', 'glm-3-turbo')),
+        'temperature' => array('type' => 'number', 'required' => false, 'default' => 0.7, 'minimum' => 0, 'maximum' => 2),
+        'max_tokens' => array('type' => 'integer', 'required' => false, 'default' => 2048, 'minimum' => 1, 'maximum' => 8192),
+    )
+);
+
+$tools[] = array(
+    'name' => 'awbu_get_glm_models',
+    'description' => 'Get list of available GLM models from zero.ai',
+    'parameters' => array()
+);
+
+$tools[] = array(
+    'name' => 'awbu_test_glm_key',
+    'description' => 'Test if GLM API key is valid',
+    'parameters' => array(
+        'api_key' => array('type' => 'string', 'required' => true, 'description' => 'The GLM API key to test'),
+    )
+);
+
+$tools[] = array(
+    'name' => 'awbu_glm_get_embedding',
+    'description' => 'Get text embedding using GLM model (for semantic search)',
+    'parameters' => array(
+        'text' => array('type' => 'string', 'required' => true, 'description' => 'The text to embed'),
+    )
+);
+
 $tools[] = array(
     'name' => 'ymcp_create_workflow',
     'description' => 'Create automation workflow',
@@ -1224,6 +1261,20 @@ case 'ymcp_list_workflows':
     return $this->ymcp_list_workflows($params);
 
 case 'ymcp_trigger_workflow':
+
+// ==================== NEW: GLM TOOLS ====================
+case 'awbu_chat_with_glm':
+    return $this->chat_with_glm($params);
+
+case 'awbu_get_glm_models':
+    return $this->get_glm_models($params);
+
+case 'awbu_test_glm_key':
+    return $this->test_glm_key($params);
+
+case 'awbu_glm_get_embedding':
+    return $this->glm_get_embedding($params);
+
     return $this->ymcp_trigger_workflow($params);
 
     
