@@ -1,0 +1,1 @@
+curl -X POST -F "file=@whatsapp-qr-fixed.png" https://catbox.moe/user/api.php
