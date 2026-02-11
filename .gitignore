@@ -1,0 +1,351 @@
+# ==============================================
+# .gitignore for YMCP Personal Assistant
+# ==============================================
+
+# ==============================================
+# 1. OPERATING SYSTEM FILES
+# ==============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==============================================
+# 2. IDE SPECIFIC FILES
+# ==============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+*.code-workspace
+
+# PHPStorm / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+.\#*\#
+
+# ==============================================
+# 3. WORDPRESS SPECIFIC FILES
+# ==============================================
+
+# WordPress Core
+wp-admin/
+wp-includes/
+wp-content/*.log
+wp-content/debug.log
+wp-content/error_log
+wp-content/advanced-cache.php
+wp-content/backups/
+
+# WordPress Uploads
+wp-content/uploads/*/*
+!wp-content/uploads/.gitignore
+
+# WordPress Config
+wp-config.php
+wp-config.php.backup
+wp-config.php~
+wp-config.php.bak
+
+# WordPress Plugins (except YMCP)
+wp-content/plugins/*/
+!wp-content/plugins/ymcp-personal-assistant
+!wp-content/plugins/ai-website-builder-unified
+
+# WordPress Themes (except YMCP themes)
+wp-content/themes/*/
+!wp-content/themes/ymcp-theme
+!wp-content/themes/twentytwenty*/
+
+# ==============================================
+# 4. ENVIRONMENT SPECIFIC FILES
+# ==============================================
+
+# Local Environment
+.env.local
+.env.staging
+.env.production
+
+# Config Files (be careful with these)
+config.local.php
+config.testing.php
+
+# ==============================================
+# 5. SENSITIVE FILES & CREDENTIALS
+# ==============================================
+
+# API Keys
+*api-key*
+*credentials*
+*.key
+*.pem
+*.cert
+*.p12
+*.jks
+
+# Secrets
+secrets.json
+secrets.yml
+.secrets
+tokens.json
+tokens.yml
+auth.json
+auth.yml
+
+# Database (if any)
+*.sql
+*.sqlite
+*.db
+
+# ==============================================
+# 6. BUILD FILES & ARTIFACTS
+# ==============================================
+
+# Build Directories
+build/
+dist/
+out/
+target/
+
+# Build Artifacts
+*.min.js
+*.min.css
+*.map
+*.tsbuildinfo
+
+# ==============================================
+# 7. NODE.JS / NPM FILES
+# ==============================================
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+.pnp-lock.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Cache
+.npm
+.yarn-intellij
+.pnpm-debug.log*
+
+# ==============================================
+# 8. COMPOSER / PHP DEPENDENCIES
+# ==============================================
+
+# Vendor Directory
+/vendor/
+
+# Composer Files
+composer.lock
+composer.phar
+
+# ==============================================
+# 9. TEMPORARY FILES
+# ==============================================
+
+# General Temp Files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Editor Backup Files
+*.orig
+*.rej
+*~
+
+# ==============================================
+# 10. BACKUP & ARCHIVE FILES
+# ==============================================
+
+# Backup Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Old Files
+*.old
+*.backup
+*.backup.*
+*_backup.*
+
+# ==============================================
+# 11. LOG FILES
+# ==============================================
+
+# Application Logs
+logs/
+*.log
+*.logs
+debug.log
+error.log
+access.log
+
+# ==============================================
+# 12. UPLOAD & DOWNLOAD FILES
+# ==============================================
+
+# Downloaded Files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.iso
+*.dmg
+*.exe
+
+# Upload Scripts
+upload_*.py
+upload_*.sh
+upload_*.ps1
+
+# ==============================================
+# 13. DOCUMENTATION & NOTES
+# ==============================================
+
+# Keep important docs, ignore drafts
+docs/drafts/
+notes/drafts/
+*.md.bak
+*.txt.old
+
+# ==============================================
+# 14. IMAGE & MEDIA FILES
+# ==============================================
+
+# Original Images (keep optimized versions)
+images/original/
+*.orig.jpg
+*.orig.png
+*.psd
+*.ai
+*.sketch
+
+# Screenshots
+screenshots/
+*.png
+
+# ==============================================
+# 15. TEST & STAGING FILES
+# ==============================================
+
+# Test Files
+test/test-*.php
+test/test-*.html
+*.test.js
+*.spec.ts
+
+# Staging Files
+.staging/
+*.staging.*
+
+# ==============================================
+# 16. PERSONAL & USER FILES
+# ==============================================
+
+# User-specific files (example)
+my-config.php
+local-settings.php
+personal-notes.md
+
+# ==============================================
+# 17. GITHUB SPECIFIC FILES
+# ==============================================
+
+# GitHub Actions (keep if needed)
+.github/workflows/*.log
+
+# ==============================================
+# 18. KEEP THESE FILES (IMPORTANT!)
+# ==============================================
+
+# Source Files
+*.php
+*.html
+*.css
+*.js
+*.json
+*.md
+*.yml
+*.yaml
+
+# Configuration Files
+wp-config-sample.php
+config-sample.json
+
+# ==============================================
+# 19. CUSTOM EXCEPTIONS (Modify as needed)
+# ==============================================
+
+# Exception: Keep all YAML files (config files)
+!*.yml
+
+# Exception: Keep all JSON files (config files)
+!*.json
+
+# Exception: Keep all PHP files (source code)
+!*.php
+
+# Exception: Keep specific directories
+!includes/
+!memory/
+!docs/
+
+# ==============================================
+# 20. FINAL DIRECTIVES
+# ==============================================
+
+# Prevent file staging issues
+.*
+!.gitignore
+.gitignore
+
+# Force Git to track empty directories
+!*/
+!.gitkeep
+
+# End of .gitignore
